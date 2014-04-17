@@ -14,6 +14,9 @@
     "require": {
         "php": ">=5.4.0"
     },
+    "require-dev": {
+        "mockery/mockery": "~0.9"
+    },
     "autoload": {
         "psr-4": { "Uptime\\": "src/" },
         "files": ["__functions.php"]
