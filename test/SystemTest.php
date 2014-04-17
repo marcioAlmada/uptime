@@ -41,6 +41,8 @@ class SystemTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\Uptime\Boottime', $system->getBoottime());
         $this->assertGreaterThan(0, $system->getUptime()->getRaw());
         $this->assertGreaterThan(0, $system->getBoottime()->getRaw());
+        $this->assertInternalType('float', uptime( $system_identifier ));
+        $this->assertTrue($this->isTimestamp(boottime( $system_identifier )));
     }
 
     public function systemIdentifierProvider()
@@ -48,5 +50,13 @@ class SystemTest extends \PHPUnit_Framework_TestCase
         $systems = array_keys(SystemTable::getMap());
         array_walk($systems, function(&$group){ $group =  [$group]; });
         return $systems;
+    }
+
+    protected function isTimestamp($timestamp)
+    {
+        return ((int) $timestamp === $timestamp)
+            && ($timestamp <= PHP_INT_MAX)
+            && ($timestamp >= ~PHP_INT_MAX)
+            && (!strtotime($timestamp));
     }
 }
