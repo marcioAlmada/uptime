@@ -15,6 +15,7 @@ class SystemTable
      */
     protected static $map = [
         'Linux'   => [ 'linux', 'cygwin', 'linux-armv71', 'linux2', 'unix', 'sunos'], // `cat /proc/uptime`
+        'Darwin'  => [ 'darwin', 'mac', 'osx'], //  `sysctl kern.boottime`
         'Windows' => [ 'win32', 'winnt', 'windows' ], // `wmic os get lastbootuptime`
     ];
 
