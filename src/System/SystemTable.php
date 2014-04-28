@@ -18,6 +18,7 @@ class SystemTable
         'Darwin'  => [ 'darwin', 'mac', 'osx'], //  `sysctl kern.boottime`
         'FreeBSD' => [ 'freebsd', 'openbsd', 'netbsd', 'bsd' ], // `sysctl kern.boottime`
         'Windows' => [ 'win32', 'winnt', 'windows' ], // `wmic os get lastbootuptime`
+        'OpenVMS' => [ 'openvms' ] // `show system/noprocess`
     ];
 
     public static function getSystemIdentifier($system){
