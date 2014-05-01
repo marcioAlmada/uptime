@@ -15,12 +15,15 @@ python module [uptime](https://pythonhosted.org/uptime/#module-uptime). No stabl
 
 ## Supported Platforms
 
-- [x] FreeBSD `FreeBSD`, `OpenBSD`, `NetBSD`, `BSD`
-- [x] Linux   `Linux`, `Cygwin`, `Linux-armv71`, `Linux2`, `Unix`, `SunOS`
-- [x] Darwin  `Darwin`, `Mac`, `OSX`
-- [x] Windows `Windows`, `Win32`, `Winnt`
-- [x] OpenVMS `OpenVMS`
-- [ ] NetWare `?`
+
+|     | Group   | Systems |
+|:---:|:---     |:---|
+| :ok:| FreeBSD | `FreeBSD`, `OpenBSD`, `NetBSD`, `BSD`
+| :ok:| Linux   | `Linux`, `Cygwin`, `Linux-armv71`, `Linux2`, `Unix`, `SunOS`
+| :ok:| Darwin  | `Darwin`, `Mac`, `OSX`
+| :ok:| Windows | `Windows`, `Win32`, `Winnt`
+| :ok:| OpenVMS | `OpenVMS`
+| :octocat: | NetWare | `?`
 
 ## Composer Installation
 
