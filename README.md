@@ -1,4 +1,4 @@
-Uptime
+Uptime - PHP
 ==================
 
 [![Build Status](https://travis-ci.org/marcioAlmada/uptime.svg?branch=master)](https://travis-ci.org/marcioAlmada/uptime)
@@ -8,21 +8,19 @@ Uptime
 [![Total Downloads](https://poser.pugx.org/uptime/uptime/downloads.png)](https://packagist.org/packages/uptime/uptime)
 [![License](https://poser.pugx.org/uptime/uptime/license.png)](https://packagist.org/packages/uptime/uptime)
 
-The missing php uptime package inspired by
+The missing PHP uptime package inspired by
 python module [uptime](https://pythonhosted.org/uptime/#module-uptime). No stable release yet!
 
-> This package aims to provides a **cross platform** PHP API — OO and functional — that tells you
-> how long your system has been up and when it booted. This turns out to be surprisingly
-> non-straightforward, but not impossible on any major platform.
+> This package aims to provides a **cross platform** PHP API — OO and functional — that tells you how long your system has been up and when it booted. This turns out to be surprisingly non-straightforward across systems, but not impossible on any major platform.
 
 ## Supported Platforms
 
-- [x] Linux
-- [x] Darwin
-- [x] FreeBSD
-- [x] Windows
-- [x] OpenVMS
-- [ ] NetWare
+- [x] FreeBSD `FreeBSD`, `OpenBSD`, `NetBSD`, `BSD`
+- [x] Linux   `Linux`, `Cygwin`, `Linux-armv71`, `Linux2`, `Unix`, `SunOS`
+- [x] Darwin  `Darwin`, `Mac`, `OSX`
+- [x] Windows `Windows`, `Win32`, `Winnt`
+- [x] OpenVMS `OpenVMS`
+- [ ] NetWare `?`
 
 ## Composer Installation
 
@@ -36,22 +34,75 @@ python module [uptime](https://pythonhosted.org/uptime/#module-uptime). No stabl
 
 Through terminal: `composer require uptime/uptime:dev-master` :8ball:
 
-## Manual
+## Guided Tour
 
-Soon...
+Besides classes, this package registers two global functions: `uptime` and `boottime`.
 
-### Functional API
-### OO API
-#### System Class
-#### Uptime Class
-#### Boottime Class
-### Adding Other Platforms
+```php
+$seconds = uptime();     # <float> uptime in seconds
+$timestamp = boottime(); # <string> server boottime timestamp
+```
 
-## Roadmap
+The package will guess your current OS by parsing [`PHP_OS`](http://www.php.net/manual/en/reserved.constants.php)
+constant value. In case you're using an exotic platform that is known to be compatible with one of
+the supported [systems](#supported-platforms),
+try to bypass OS detection by informing your system identifier:
+
+```php
+$seconds   = uptime('OpenVMS');   # <float||int> server uptime in seconds
+$timestamp = boottime('FreeBSD'); # <string> server boottime timestamp
+```
+
+For more complex manipulations you can use the OO interface:
+
+```php
+use Uptime\System;
+
+$system = new System();           # <Uptime\System #>
+
+$uptime = $system->getUptime();   # <Uptime\Uptime implements \DateInterval #> {}
+
+$uptime->d                        # <int> days
+$uptime->h                        # <int> hours
+$uptime->m                        # <int> minutes
+$uptime->s                        # <float||int> seconds
+
+$bootime = $system->getBootime(); # <Uptime\Bootime implements \DateTime #> {}
+$bootime->format('Ymd H:i:s');    # <string> formatted date
+
+echo 'Uptime: ' . $uptime . '. Boottime: ' . $bootime; # yes we have __toString
+```
+
+You can bypass automatic system detection with the `System` class too:
+
+```php
+
+$system = new System('SunOS'); # <Uptime\System #>
+$system = new System('Amiga'); # throws <Uptime\UnsuportedSystemException #> {}
+                               # patches welcome ;)
+```
+
+### Notes
+
+- Returned values will be as precise as your platform allows to, usually microseconds but it can be seconds;
+- Some platforms need a better way to get uptime and boottime;
+- For some platforms [`shell_exec`](http://www.php.net/manual/en/function.shell-exec.php) function needs to be enabled;
+
+### Extending Platform Support
+
+0. Map your platform or system identifier on [`Uptime\System\SystemTable::$map`](/src/System/SystemTable.php#L16)
+0. If necessary create a new runtime under `src/Runtime/<NewSystemGroup>/*`
+0. Add new tests to `test/Runtime/<NewSystemGroup>/*`
+0. Create a pull request
+
+## Features & Roadmap
 
 - [x] Functional API
-- [ ] Write docs and manual
+- [x] OO API
+- [ ] Add a facade
+- [ ] Write guide and manual
 - [ ] Better cross platform tests
+- [ ] Try to avoid child processes
 - [ ] Maybe C extension
 
 ## Copyright
