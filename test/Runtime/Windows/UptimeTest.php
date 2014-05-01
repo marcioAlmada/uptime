@@ -28,7 +28,7 @@ class UptimeTest extends \PHPUnit_Framework_TestCase
             '20130921162204.221342+120',
             '20130921162204.221343+120'
         );
-        $this->assertEquals($uptime->read($runtime), $uptime->read($runtime));
+        $this->assertEquals($uptime->read($runtime), $uptime->read($runtime), null, 1);
         $this->assertNotEquals($uptime->read($runtime), $uptime->read($runtime));
     }
 }
