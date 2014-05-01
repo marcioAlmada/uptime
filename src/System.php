@@ -48,4 +48,9 @@ class System implements SystemInterface
 
         return new $value_object( $runtime->read() );
     }
+
+    public static function createFromContext()
+    {
+        return new self();
+    }
 }
