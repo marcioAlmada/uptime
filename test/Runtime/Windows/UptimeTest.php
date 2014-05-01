@@ -13,14 +13,15 @@ use Mockery as m;
 class UptimeTest extends \PHPUnit_Framework_TestCase
 {
 
-    protected function tearDown() {
+    protected function tearDown()
+    {
         m::close();
     }
 
     public function testUptime()
     {
         $uptime = new Uptime();
-        $runtime = m::mock('\Uptime\Runtime\RuntimeInterface'); 
+        $runtime = m::mock('\Uptime\Runtime\RuntimeInterface');
         $runtime->shouldReceive('read')->times(4)->andReturn(
             '20140429225056.153618-180',
             '20140429225056.153618-180',

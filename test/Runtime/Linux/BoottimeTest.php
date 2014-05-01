@@ -18,4 +18,3 @@ class BoottimeTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1398698286, $uptime->read($fixture));
     }
 }
-

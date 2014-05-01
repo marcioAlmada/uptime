@@ -14,7 +14,7 @@ class SystemTest extends \PHPUnit_Framework_TestCase
      * @expectedException        Uptime\System\UnsupportedSystemException
      * @expectedExceptionMessage Unknown" is not supported
      */
-    public function testUnsupportedSystemException( $method )
+    public function testUnsupportedSystemException($method)
     {
         (new System('Unknown'))->{ $method }();
     }
@@ -31,9 +31,9 @@ class SystemTest extends \PHPUnit_Framework_TestCase
      * @test
      * @dataProvider systemIdentifierProvider
      */
-    public function tetsCurrentSystem( $system_identifier )
+    public function tetsCurrentSystem($system_identifier)
     {
-        if($system_identifier !== PHP_OS) {
+        if ($system_identifier !== PHP_OS) {
             $this->markTestSkipped("Skipped {$system_identifier} related test.");
         }
         $system = new System($system_identifier);
@@ -46,9 +46,10 @@ class SystemTest extends \PHPUnit_Framework_TestCase
     }
 
     public function systemIdentifierProvider()
-    {   
+    {
         $systems = array_keys(SystemTable::getMap());
-        array_walk($systems, function(&$group){ $group =  [$group]; });
+        array_walk($systems, function (&$group) { $group =  [$group]; });
+
         return $systems;
     }
 

@@ -22,10 +22,10 @@ class System implements SystemInterface
 
     protected $system;
 
-    public function __construct( $system = PHP_OS )
+    public function __construct($system = PHP_OS)
     {
         $this->system = SystemTable::getSystemIdentifier( $system );
-        if( !$this->system ) {
+        if (!$this->system) {
             throw new UnsupportedSystemException( sprintf( self::ERROR, $system ) );
         }
     }
@@ -45,6 +45,7 @@ class System implements SystemInterface
         $class = sprintf(self::RUNTIME_CLASS, $this->system,  $value_object);
         $runtime = new $class();
         $value_object = 'Uptime\\' . $value_object;
-        return new $value_object( $runtime->read() );   
+
+        return new $value_object( $runtime->read() );
     }
 }

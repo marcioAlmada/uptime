@@ -22,9 +22,10 @@ class BoottimeTest extends \PHPUnit_Framework_TestCase
 
     public function stdinProvider()
     {
-        $factory = function( $timestamp, $stdout ) {
+        $factory = function ($timestamp, $stdout) {
             return [ $timestamp, sprintf($stdout, $timestamp) ];
         };
+
         return [
             $factory('20140429225056.153625-180', "LastBootUpTime\n%s\n\n\n"),
             $factory('20120612125056.153625-060', "LastBootUpTime\n%s\n\n\n"),

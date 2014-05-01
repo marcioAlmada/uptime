@@ -22,9 +22,10 @@ class UptimeTest extends \PHPUnit_Framework_TestCase
 
     public function stdinProvider()
     {
-        $factory = function( $seconds, $uptime, $stdout ) {
+        $factory = function ($seconds, $uptime, $stdout) {
             return [ $seconds, sprintf($stdout, $uptime) ];
         };
+
         return [
             $factory(135, '0 00:02:15',   'OpenVMS V8.5-2 on node CLASS2   8-FEB-2007 08:39:23.23  Uptime  %s'),
             $factory(343243, '3 23:20:43',   'OpenVMS V7.2-2  on node CHEER  27-JAN-2003 16:09:26.94  Uptime  %s'),
@@ -34,8 +35,3 @@ class UptimeTest extends \PHPUnit_Framework_TestCase
         ];
     }
 }
-
-
-
-
-

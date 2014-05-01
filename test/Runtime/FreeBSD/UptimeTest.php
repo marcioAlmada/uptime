@@ -22,9 +22,10 @@ class UptimeTest extends \PHPUnit_Framework_TestCase
 
     public function stdinProvider()
     {
-        $factory = function( $number, $struct ) {
+        $factory = function ($number, $struct) {
             return [ $number, sprintf($struct, $number, $number) ];
         };
+
         return [
             $factory( rand(0, 100), 'kern.boottime: { sec =%s, usec = %s }'         ),
             $factory( rand(100, 10000), 'kern.boottime: { sec= %s, usec = %s }'     ),

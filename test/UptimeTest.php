@@ -4,7 +4,7 @@ namespace Uptime;
 
 /**
  * UptimeTest
- * 
+ *
  * @group time
  */
 class UptimeTest extends \PHPUnit_Framework_TestCase
