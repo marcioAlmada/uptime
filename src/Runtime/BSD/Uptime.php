@@ -1,6 +1,6 @@
 <?php
 
-namespace Uptime\Runtime\FreeBSD;
+namespace Uptime\Runtime\BSD;
 
 use Uptime\Runtime\Darwin\Uptime as DarwinUptime;
 

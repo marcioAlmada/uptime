@@ -1,12 +1,12 @@
 <?php
 
-namespace Uptime\Runtime\FreeBSD;
+namespace Uptime\Runtime\BSD;
 
 /**
- * UptimeTest for FreeBSD
+ * UptimeTest for BSD
  *
  * @group runtime
- * @group freebsd
+ * @group bsd
  */
 class UptimeTest extends \PHPUnit_Framework_TestCase
 {

@@ -1,14 +1,14 @@
 <?php
 
-namespace Uptime\Runtime\FreeBSD;
+namespace Uptime\Runtime\BSD;
 
 use Mockery as m;
 
 /**
- * BoottimeTest for FreeBSD
+ * BoottimeTest for BSD
  *
  * @group runtime
- * @group freebsd
+ * @group bsd
  */
 class BoottimeTest extends \PHPUnit_Framework_TestCase
 {
