@@ -18,7 +18,7 @@ python module [uptime](https://pythonhosted.org/uptime/#module-uptime). No stabl
 
 |     | Group   | Systems |
 |:---:|:---     |:---|
-| :ok:| FreeBSD | `FreeBSD`, `OpenBSD`, `NetBSD`, `BSD`
+| :ok:| BSD     | `FreeBSD`, `OpenBSD`, `NetBSD`, `BSD`
 | :ok:| Linux   | `Linux`, `Cygwin`, `Linux-armv71`, `Linux2`, `Unix`, `SunOS`
 | :ok:| Darwin  | `Darwin`, `Mac`, `OSX`
 | :ok:| Windows | `Windows`, `Win32`, `Winnt`
@@ -37,23 +37,23 @@ python module [uptime](https://pythonhosted.org/uptime/#module-uptime). No stabl
 
 Through terminal: `composer require uptime/uptime:dev-master` :8ball:
 
-## Guided Tour
+## Quick Guide
 
 Besides classes, this package registers two global functions: `uptime` and `boottime`.
 
 ```php
-$seconds = uptime();     # <float> uptime in seconds
+$seconds   = uptime();   # <float> uptime in seconds
 $timestamp = boottime(); # <string> server boottime timestamp
 ```
 
 The package will guess your current OS by parsing [`PHP_OS`](http://www.php.net/manual/en/reserved.constants.php)
 constant value. In case you're using an exotic platform that is known to be compatible with one of
-the supported [systems](#supported-platforms),
-try to bypass OS detection by informing your system identifier:
+the supported [systems](#supported-platforms), you can try to bypass OS detection
+by informing your system identifier manually:
 
 ```php
-$seconds   = uptime('OpenVMS');   # <float||int> server uptime in seconds
-$timestamp = boottime('FreeBSD'); # <string> server boottime timestamp
+$seconds   = uptime('JunOS');   # <float||int> server uptime in seconds
+$timestamp = boottime('JunOS'); # <string> server boottime timestamp
 ```
 
 For more complex manipulations you can use the OO interface:
@@ -76,9 +76,10 @@ $bootime->format('Ymd H:i:s');    # <string> formatted date
 echo 'Uptime: ' . $uptime . '. Boottime: ' . $bootime; # yes we have __toString
 ```
 
-You can bypass automatic system detection with the `System` class too:
+You can bypass automatic system detection using the `Uptime\System` class too:
 
 ```php
+use Uptime\System;
 
 $system = new System('SunOS'); # <Uptime\System #>
 $system = new System('Amiga'); # throws <Uptime\UnsuportedSystemException #> {}
@@ -91,12 +92,13 @@ $system = new System('Amiga'); # throws <Uptime\UnsuportedSystemException #> {}
 - Some platforms need a better way to get uptime and boottime;
 - For some platforms [`shell_exec`](http://www.php.net/manual/en/function.shell-exec.php) function needs to be enabled;
 
-### Extending Platform Support
+## Extending Platform Support
 
-0. Map your platform or system identifier on [`Uptime\System\SystemTable::$map`](/src/System/SystemTable.php#L16)
-0. If necessary create a new runtime under `src/Runtime/<NewSystemGroup>/*`
-0. Add new tests to `test/Runtime/<NewSystemGroup>/*`
-0. Create a pull request
+0. Check `PHP_OS` constant value;
+0. Map your platform or system identifier on [`Uptime\System\SystemTable::$map`](/src/System/SystemTable.php#L16);
+0. Create a new runtime under `src/Runtime/<NewSystemGroup>/*`, if necessary;
+0. Add new tests to `test/Runtime/<NewSystemGroup>/*`, if necessary;
+0. Pull request;
 
 ## Features & Roadmap
 
