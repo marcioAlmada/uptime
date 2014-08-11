@@ -8,13 +8,11 @@ Uptime - PHP
 [![Total Downloads](https://poser.pugx.org/uptime/uptime/downloads.png)](https://packagist.org/packages/uptime/uptime)
 [![License](https://poser.pugx.org/uptime/uptime/license.png)](https://packagist.org/packages/uptime/uptime)
 
-The missing PHP uptime package inspired by
-python module [uptime](https://pythonhosted.org/uptime/#module-uptime). No stable release yet!
+The missing PHP uptime package inspired by python module [uptime](https://pythonhosted.org/uptime/#module-uptime).
 
 > This package aims to provides a **cross platform** PHP API — OO and functional — that tells you how long your system has been up and when it booted. This turns out to be surprisingly non-straightforward across systems, but not impossible on any major platform.
 
 ## Supported Platforms
-
 
 |     | Group   | Systems |
 |:---:|:---     |:---|
@@ -30,12 +28,12 @@ python module [uptime](https://pythonhosted.org/uptime/#module-uptime). No stabl
 ```json
 {
   "require": {
-    "uptime/uptime": "dev-master"
+    "uptime/uptime": "~0.1"
   }
 }
 ```
 
-Through terminal: `composer require uptime/uptime:dev-master` :8ball:
+Through terminal: `composer require uptime/uptime:~0.1` :8ball:
 
 ## Quick Guide
 
@@ -45,17 +43,6 @@ Besides classes, this package registers two global functions: `uptime` and `boot
 $seconds   = uptime();   # <float> uptime in seconds
 $timestamp = boottime(); # <string> server boottime timestamp
 ```
-
-The package will guess your current OS by parsing [`PHP_OS`](http://www.php.net/manual/en/reserved.constants.php)
-constant value. In case you're using an exotic platform that is known to be compatible with one of
-the supported [systems](#supported-platforms), you can try to bypass OS detection
-by informing your system identifier manually:
-
-```php
-$seconds   = uptime('JunOS');   # <float||int> server uptime in seconds
-$timestamp = boottime('JunOS'); # <string> server boottime timestamp
-```
-
 For more complex manipulations you can use the OO interface:
 
 ```php
@@ -76,12 +63,21 @@ $bootime->format('Ymd H:i:s');    # <string> formatted date
 echo 'Uptime: ' . $uptime . '. Boottime: ' . $bootime; # yes we have __toString
 ```
 
+Uptime will guess your current OS by parsing [`PHP_OS`](http://www.php.net/manual/en/reserved.constants.php)
+constant value. In case you're using any exotic platform that is known to be compatible with one of
+the supported [systems](#supported-platforms), you can bypass OS detection by informing
+your system identifier manually (case insensitive):
+
+```php
+$seconds   = uptime('JunOS');   # <float||int> server uptime in seconds
+$timestamp = boottime('JunOS'); # <string> server boottime timestamp
+```
 You can bypass automatic system detection using the `Uptime\System` class too:
 
 ```php
 use Uptime\System;
 
-$system = new System('SunOS'); # <Uptime\System #>
+$system = new System('JunOS'); # <Uptime\System #>
 $system = new System('Amiga'); # throws <Uptime\UnsuportedSystemException #> {}
                                # patches welcome ;)
 ```
