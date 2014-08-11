@@ -40,7 +40,7 @@ Through terminal: `composer require uptime/uptime:~0.1` :8ball:
 Besides classes, this package registers two global functions: `uptime` and `boottime`.
 
 ```php
-$seconds   = uptime();   # <float> uptime in seconds
+$seconds   = uptime();   # <float||int> uptime in seconds
 $timestamp = boottime(); # <string> server boottime timestamp
 ```
 For more complex manipulations you can use the OO interface:
@@ -78,7 +78,7 @@ You can bypass automatic system detection using the `Uptime\System` class too:
 use Uptime\System;
 
 $system = new System('JunOS'); # <Uptime\System #>
-$system = new System('Amiga'); # throws <Uptime\UnsuportedSystemException #> {}
+$system = new System('Amiga'); # throws <Uptime\UnsupportedSystemException #> {}
                                # patches welcome ;)
 ```
 
