@@ -30,6 +30,11 @@ class System implements SystemInterface
         }
     }
 
+    public function getSystem()
+    {
+        return $this->system;
+    }
+
     public function getBoottime()
     {
         return $this->getTime('Boottime');

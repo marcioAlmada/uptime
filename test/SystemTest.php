@@ -53,6 +53,11 @@ class SystemTest extends \PHPUnit_Framework_TestCase
         return $systems;
     }
 
+    public function testCreateFromContext()
+    {
+        $this->assertEquals(PHP_OS, System::createFromContext()->getSystem());
+    }
+
     protected function assertTimestamp($timestamp)
     {
         $this->assertTrue(
