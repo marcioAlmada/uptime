@@ -57,10 +57,10 @@ $uptime->h                        # <int> hours
 $uptime->m                        # <int> minutes
 $uptime->s                        # <float||int> seconds
 
-$bootime = $system->getBootime(); # <Uptime\Bootime implements \DateTime #> {}
-$bootime->format('Ymd H:i:s');    # <string> formatted date
+$boottime = $system->getBoottime(); # <Uptime\Boottime implements \DateTime #> {}
+$boottime->format('Ymd H:i:s');    # <string> formatted date
 
-echo 'Uptime: ' . $uptime . '. Boottime: ' . $bootime; # yes we have __toString
+echo 'Uptime: ' . $uptime . '. Boottime: ' . $boottime; # yes we have __toString
 ```
 
 Uptime will guess your current OS by parsing [`PHP_OS`](http://www.php.net/manual/en/reserved.constants.php)
