@@ -9,6 +9,10 @@ class Boottime implements RuntimeInterface
 
     public function read($command = 'wmic os get lastbootuptime')
     {
-        return trim( explode( "\n", shell_exec($command) )[1] );
+        $dateTime = \DateTime::createFromFormat(
+            'YmdHis.uO',
+            trim( explode( "\n", shell_exec($command) )[1] )
+        );
+        return $dateTime->getTimestamp();
     }
 }
