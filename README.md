@@ -100,13 +100,11 @@ $system = new System('Amiga'); # throws <Uptime\UnsupportedSystemException #> {}
 
 - [x] Functional API
 - [x] OO API
-- [ ] Add a facade
-- [ ] Write guide and manual
 - [ ] Better cross platform tests
 - [ ] Try to avoid child processes
 - [ ] Maybe C extension
 
 ## Copyright
 
-Copyright (c) 2014 Márcio Almada. Distributed under the terms of an MIT-style license.
+Copyright (c) 2014-* Márcio Almada. Distributed under the terms of an MIT-style license.
 See LICENSE for details.
